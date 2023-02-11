@@ -4,31 +4,56 @@ function getComputerChoice () {
     
     return choise[numR]
 }
+
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "Scissor") {
-        return "You win"    
+        return 2;
     }else if (playerSelection === "paper" && computerSelection === "Rock") {
-        return "You win"
+        return 2;
     }else if (playerSelection === "scissor" && computerSelection === "Paper") {
-        return "You win"
+        return 2;
     }
     if (playerSelection === "rock" && computerSelection === "Paper") {
-        return "You lose"    
+        return 1;
     }else if (playerSelection === "paper" && computerSelection === "Scissor") {
-        return "You lose"
+        return 1;
     }else if (playerSelection === "scissor" && computerSelection === "Rock") {
-        return "You lose"
+        return 1;
     }else{
-        return "Tie"
+        return 0;
     }
 }
 function game () {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Chose your weapon: Rock, Paper or Scissor").toLowerCase()
-        const computerSelection = String(getComputerChoice());
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    console.log("End Game")
+    const buttons = document.querySelectorAll('button');
+
+    let pointPlayer = 0;
+    let pointPc = 0;
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const playerSelection = button.id;
+            const computerSelection = String(getComputerChoice());
+            const result = playRound(playerSelection, computerSelection);
+            if (result === 2){
+                pointPlayer++;
+            } else if (result === 1){
+                pointPc++;
+            } else{
+                console.log('tie')
+            }
+            if (pointPlayer === 5){
+                console.log("You win. End Game");
+                pointPlayer = 0;
+                pointPc = 0;
+            } else if (pointPc === 5){
+                console.log("You lose. End Game");
+                pointPlayer = 0;
+                pointPc = 0;
+            }
+            console.log("Point Player " + pointPlayer + " x " + pointPc + " Point PC")
+
+        });
+    });
 }
 
 game()
