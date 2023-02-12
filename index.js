@@ -35,6 +35,7 @@ function playRound (playerSelection, computerSelection) {
 function game () {
     const buttons = document.querySelectorAll('button');
     playAgain.style.display = 'none'
+    showResult.style.display = 'none'
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
