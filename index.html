@@ -10,19 +10,24 @@
 <body>
     <div class="container">
         <div class="content">
-            <h1>Rock, Paper and Scissor</h1>
-            <h3>Chose your weapon</h3>
-            <p class="results">
-                <p id="person">Your <span>0</span></p>
-                <span>x</span>
-                <p id="pc"><span>0</span> PC</p>
-            </p>
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissor">Scissor</button>
-            <p id="winner">You win.</p>
-            <p id="loser">You lose.</p>
-            <p id="tie">Tie.</p>
+            <div class="title">
+                <h1>Rock, Paper and Scissor</h1>
+                <h3>Chose your weapon</h3>
+            </div>
+            <div id="scoreboard">
+                <p>You <span id="yourScore"> 0 </span></p>
+                <span> x </span>
+                <p><span id="pcScore"> 0 </span> PC</p>
+            </div>
+            <div class="choose">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissor">Scissor</button>
+            </div>
+            <div id="result">
+                <p id="showResult">Tie.</p>
+                <button id="playAgain">Play Again</button>    
+            </div>
         </div>
 
     </div>

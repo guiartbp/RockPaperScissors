@@ -1,3 +1,11 @@
+const showResult = document.getElementById('showResult');
+
+let pointPlayer = 0;
+let pointPc = 0;
+const yourScore = document.getElementById('yourScore');
+const pcScore = document.getElementById('pcScore');
+
+
 function getComputerChoice () {
     let choise = ['Rock', 'Paper', 'Scissor']
     let numR = Math.floor(Math.random() * 3);
@@ -23,37 +31,56 @@ function playRound (playerSelection, computerSelection) {
         return 0;
     }
 }
+
 function game () {
     const buttons = document.querySelectorAll('button');
-
-    let pointPlayer = 0;
-    let pointPc = 0;
+    playAgain.style.display = 'none'
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
+            showResult.style.display = "block";
             const playerSelection = button.id;
             const computerSelection = String(getComputerChoice());
             const result = playRound(playerSelection, computerSelection);
             if (result === 2){
                 pointPlayer++;
+                showResult.textContent = "Win";
+                yourScore.textContent = pointPlayer;
+
             } else if (result === 1){
                 pointPc++;
+                showResult.textContent = "Lose";
+                pcScore.textContent = pointPc;
             } else{
-                console.log('tie')
+                showResult.textContent = "Tie";
             }
             if (pointPlayer === 5){
-                console.log("You win. End Game");
-                pointPlayer = 0;
-                pointPc = 0;
+                endGame('win')
             } else if (pointPc === 5){
-                console.log("You lose. End Game");
-                pointPlayer = 0;
-                pointPc = 0;
+                endGame('lose')
             }
-            console.log("Point Player " + pointPlayer + " x " + pointPc + " Point PC")
 
         });
     });
 }
 
 game()
+
+function endGame(result) {
+    pointPlayer = 0;
+    pointPc = 0;
+    yourScore.textContent = pointPlayer;
+    pcScore.textContent = pointPc;
+
+    if (result === 'win'){
+        showResult.textContent = "You Win!"
+    } else{
+        showResult.textContent = "You Lose!"
+    }
+
+    playAgain.style.display = 'block'
+    playAgain.addEventListener('click', () => {
+        game();
+      });
+
+}
